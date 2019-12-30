@@ -82,7 +82,14 @@ def game_logic():
         sys.exit()
     else:
         pass
-    vertical_check()
+    if vertical_check() == 1:
+        print('player 1 won')
+        sys.exit()
+    elif vertical_check() == 2:
+        print("player 2 won")
+        sys.exit()
+    else:
+        pass
 
 
 def horizontal_check():
@@ -110,6 +117,19 @@ def vertical_check():
     c1 = flat_list[0::3]
     c2 = flat_list[1::3]
     c3 = flat_list[2::3]
+
+    result1 = all(elem == 1 for elem in c1) or all(
+        elem == 1 for elem in c2) or all(elem == 1 for elem in c3)
+    result2 = all(elem == 2 for elem in c1) or all(
+        elem == 2 for elem in c2) or all(elem == 2 for elem in c3)
+    if result1 == True:
+        return 1
+    else:
+        pass
+    if result2 == True:
+        return 2
+    else:
+        pass
 
 
 def game_over():
