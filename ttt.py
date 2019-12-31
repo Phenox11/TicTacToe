@@ -7,7 +7,6 @@ b = 0
 
 
 class board:
-    # b = [[" ", 1, 2, 3], ['A', 0, 0, 0], ['B', 0, 0, 0], ['C', 0, 0, 0]]
     b = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 
@@ -88,6 +87,12 @@ def game_logic():
     elif vertical_check() == 2:
         print("player 2 won")
         sys.exit()
+    elif diagonal_check() == 1:
+        print('player 1 won')
+        sys.exit()
+    elif diagonal_check() == 2:
+        print("player 2 won")
+        sys.exit()
     else:
         pass
 
@@ -127,6 +132,27 @@ def vertical_check():
     else:
         pass
     if result2 == True:
+        return 2
+    else:
+        pass
+
+
+def diagonal_check():
+    flat_list = []
+    d1 = []
+    d2 = []
+    for sublist in board.b:
+        for item in sublist:
+            flat_list.append(item)
+    d1 = flat_list[0::4]
+    spots = [2, 4, 8]
+    d2 = [flat_list[i] for i in spots]
+
+    result1 = all(elem == 1 for elem in d1)
+    result2 = all(elem == 2 for elem in d2)
+    if result1 == True:
+        return 1
+    elif result2 == True:
         return 2
     else:
         pass
